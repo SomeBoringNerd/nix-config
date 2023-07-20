@@ -153,6 +153,11 @@
     pango
     pkgconfig
     glib
+    dotnet-sdk
+    cmake
+    gcc12
+    ninja
+    mono
   ];
 
   # This value determines the NixOS release from which the default
