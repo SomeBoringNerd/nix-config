@@ -1,7 +1,8 @@
 {
   description = "NixOS configuration";
 
-  inputs = {
+  inputs = 
+  {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -11,18 +12,23 @@
   
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+    pkgs = import nixpkgs 
+    {
       inherit system;
       config.allowUnfree = true;
     };
 
     lib = nixpkgs.lib;
 
-  in {
-    nixosConfigurations = {
-      MAIN = lib.nixosSystem {
+  in 
+  {
+    nixosConfigurations = 
+    {
+      MAIN = lib.nixosSystem 
+      {
         inherit system;
-        modules = [
+        modules = 
+        [
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
