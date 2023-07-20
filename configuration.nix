@@ -126,7 +126,7 @@
     jetbrains.rider
     jetbrains.idea-community
     
-    # other
+    # software
     vlc
     qbittorrent
     prismlauncher
@@ -134,6 +134,11 @@
     aseprite
     gparted
     obs-studio
+    kdenlive
+
+    # plugins / other
+    mediainfo
+    glaxnimate
 
     #cli
     htop
