@@ -110,6 +110,7 @@
       kate
     ];
   };
+
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -145,6 +146,13 @@
     neofetch
     pridefetch
     xclip
+    libnotify
+
+    #cli dev tools
+    gccgo13
+    pango
+    pkgconfig
+    glib
   ];
 
   # This value determines the NixOS release from which the default

@@ -5,5 +5,6 @@ sudo cp ../nix-config/* /etc/nixos/ -r
 sudo rm /etc/nixos/apply.sh
 sudo rm /etc/nixos/pull.sh
 sudo rm /etc/nixos/README.adoc
+sudo rm -rf /etc/nixos/scripts
 
 echo moved everything, run "sudo nixos-rebuild switch --flake /etc/nixos#MAIN" to apply
