@@ -2,4 +2,6 @@
 my nix package config, will evolve as I learn to use nixos.
 
 = how to install
-move everything to /etc/nixos/, dont override your hardware-configuration.nix, run `sudo nixos-rebuild switch`
+move everything to /etc/nixos/, dont override your hardware-configuration.nix, 
+
+and then run `sudo nixos-rebuild switch --flake /etc/nixos#MAIN`

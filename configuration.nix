@@ -5,7 +5,7 @@
   nix.settings.max-jobs = "auto";
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
@@ -105,7 +105,6 @@
     packages = with pkgs; [
       firefox
       kate
-    #  thunderbird
     ];
   };
   programs.fish.enable = true;
@@ -118,25 +117,25 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   	# dev tools
-	neovim
-	unityhub
-	jetbrains.rider
-	jetbrains.idea-community
-	
-	# other
-	vlc
-	qbittorrent
-	prismlauncher
-	gimp
-	aseprite
-	gparted
-	obs-studio
+    neovim
+    unityhub
+    jetbrains.rider
+    jetbrains.idea-community
+    
+    # other
+    vlc
+    qbittorrent
+    prismlauncher
+    gimp
+    aseprite
+    gparted
+    obs-studio
 
-	#cli
-	htop
-	neofetch
-	pridefetch
-	xclip
+    #cli
+    htop
+    neofetch
+    pridefetch
+    xclip
   ];
 
   # This value determines the NixOS release from which the default
