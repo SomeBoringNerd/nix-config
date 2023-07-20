@@ -5,5 +5,6 @@
   imports = [
     ./home/git.nix
     ./home/fish.nix
+    ./home/vscode.nix
   ];
 }

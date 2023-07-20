@@ -11,6 +11,7 @@
 	shellAliases = {
 		clear = "clear && echo \"\" && pridefetch -f bisexual";
 		update = "sudo nixos-rebuild switch --flake /etc/nixos#MAIN";
+		push = "git push -u origin Mommy";
 	};
 
 	functions = {
@@ -18,7 +19,7 @@
 		    set_color $fish_color_cwd
 		    echo -n '   ╔╡'
 		    set_color cyan
-		    echo -n $USER
+		    echo -n (whoami)@(prompt_hostname)
 		    set_color yellow
 		    echo -n ' ⌠λ⌡ '
 		    set_color 62A

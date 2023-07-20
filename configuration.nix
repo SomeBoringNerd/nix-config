@@ -97,17 +97,6 @@
     #media-session.enable = true;
   };
 	
-
-#  programs.vscode = {
-#    enable = true;
-#    package = pkgs.vscodium;
-#    extensions = with pkgs.vscode-extensions; [
-#      yzhang.markdown-all-in-one
-#      wakatime.vscode-wakatime
-#      nonylene.dark-molokai-theme
-#    ];
-#  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.someboringnerd = {
     isNormalUser = true;
