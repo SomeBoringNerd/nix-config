@@ -5,9 +5,9 @@
   nix.settings.max-jobs = "auto";
 
   imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  [
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -24,7 +24,8 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
+  i18n.extraLocaleSettings = 
+  {
     LC_ADDRESS = "fr_FR.UTF-8";
     LC_IDENTIFICATION = "fr_FR.UTF-8";
     LC_MEASUREMENT = "fr_FR.UTF-8";
@@ -44,27 +45,31 @@
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver = 
+  {
     layout = "fr";
     xkbVariant = "";
   };
   # ------- Driver support for my rtx 2070 -------
-  hardware.opengl = {
+  hardware.opengl = 
+  {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
+    builtins.elem (lib.getName pkg) 
+    [
       "nvidia-x11"
       "nvidia-settings"
-  ];
+    ];
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  hardware.nvidia = { 
-    
+  hardware.nvidia = 
+  {
+
     open = false;
 
     nvidiaSettings = true;
@@ -84,25 +89,23 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
+
+  services.pipewire = 
+  {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 	
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.someboringnerd = {
+  users.users.someboringnerd = 
+  {
     isNormalUser = true;
     description = "SomeBoringNerd";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    packages = with pkgs; 
+    [
       firefox
       kate
     ];
@@ -115,7 +118,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; 
+  [
   	# dev tools
     neovim
     unityhub
