@@ -1,20 +1,23 @@
 { pkgs, libs, config, ... } :
 
 {
-	programs.fish = {
-			enable = true;
-			interactiveShellInit = ''
-					set fish_greeting
-					pridefetch -f bisexual
-			'';
+	programs.fish = 
+	{
+		enable = true;
+		interactiveShellInit = ''
+				set fish_greeting
+				pridefetch -f bisexual
+		'';
 
-		shellAliases = {
+		shellAliases = 
+		{
 			clear = "clear && echo \"\" && pridefetch -f bisexual";
 			update = "sudo nixos-rebuild switch --flake /etc/nixos#MAIN";
 			push = "git push -u origin Mommy";
 		};
 
-		functions = {
+		functions = 
+		{
 			fish_prompt = ''
 					set_color $fish_color_cwd
 					echo -n '   ╔╡'
