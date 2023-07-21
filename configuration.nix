@@ -79,6 +79,13 @@
 
   # ------- END GPU DRIVER -------
 
+  # virt-manager & libvirt
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
+  boot.kernelParams = [ "amd_iommu=on" "iommu=pt" ];
+  boot.kernelModules = [ "kvm-amd" "vfio-pci" ];
+
   # Configure console keymap
   console.keyMap = "fr";
 
@@ -103,7 +110,7 @@
   {
     isNormalUser = true;
     description = "SomeBoringNerd";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; 
     [
       firefox
@@ -136,6 +143,7 @@
     gparted
     obs-studio
     kdenlive
+    virt-manager
 
     # plugins / other
     mediainfo
