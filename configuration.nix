@@ -129,7 +129,6 @@
   environment.systemPackages = with pkgs; 
   [
   	# dev tools
-    neovim
     unityhub
     jetbrains.rider
     jetbrains.idea-community
@@ -165,6 +164,7 @@
     cmake
     gcc12
     ninja
+    gnumake
     mono
   ];
 
