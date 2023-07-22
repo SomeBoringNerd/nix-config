@@ -5,6 +5,7 @@
   imports = [
     ./git.nix
     ./fish.nix
+    ./neovim.nix
     ./vscode.nix
   ];
 }
