@@ -166,6 +166,7 @@
     ninja
     gnumake
     mono
+    clang_12
   ];
 
   # This value determines the NixOS release from which the default
