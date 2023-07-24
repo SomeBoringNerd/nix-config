@@ -8,6 +8,8 @@
 			yzhang.markdown-all-in-one
 			nonylene.dark-molokai-theme
 			wakatime.vscode-wakatime
+			ms-vscode.cpptools
+      llvm-vs-code-extensions.vscode-clangd
 		];
 	};
 }

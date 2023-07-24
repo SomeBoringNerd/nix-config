@@ -166,6 +166,8 @@
     ninja
     gnumake
     mono
+    jq
+    nodejs
     clang_12
   ];
 
