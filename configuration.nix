@@ -141,6 +141,8 @@
     aseprite
     gparted
     obs-studio
+    blender
+    lmms
     kdenlive
     virt-manager
 
