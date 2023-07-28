@@ -97,6 +97,8 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
+  
+
   services.pipewire = 
   {
     enable = true;
@@ -116,6 +118,12 @@
       firefox
       kate
     ];
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   programs.fish.enable = true;
@@ -145,6 +153,7 @@
     lmms
     kdenlive
     virt-manager
+    blockbench-electron
 
     # plugins / other
     mediainfo
@@ -171,6 +180,7 @@
     jq
     nodejs
     clang_12
+    raylib
   ];
 
   # This value determines the NixOS release from which the default
