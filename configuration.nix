@@ -135,6 +135,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  environment.sessionVariables = 
+  {
+  	DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+  };
+
   environment.systemPackages = with pkgs; 
   [
   	# dev tools
@@ -155,6 +161,7 @@
     kdenlive
     virt-manager
     blockbench-electron
+    yuzu-mainline
 
     # plugins / other
     mediainfo
@@ -173,6 +180,7 @@
     pkgconfig
     glib
     dotnet-sdk
+    omnisharp-roslyn
     cmake
     gcc12
     ninja
