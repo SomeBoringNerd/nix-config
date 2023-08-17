@@ -162,9 +162,11 @@
     virt-manager
     blockbench-electron
     yuzu-mainline
+    onlyoffice-bin
 
     # plugins / other
     mediainfo
+    wine
     glaxnimate
 
     #cli
