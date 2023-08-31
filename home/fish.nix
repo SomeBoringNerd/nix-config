@@ -32,10 +32,8 @@
 					echo -n $PWD
 					set_color $fish_color_cwd
 					echo
-					echo '   ║'
 					echo -n '   ╚═► '
 					set_color normal
-
 			'';
 		};
 	};

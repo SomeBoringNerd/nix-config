@@ -7,6 +7,7 @@
   imports =
   [
     ./hardware-configuration.nix
+    ./pipewire.nix
   ];
 
   # Bootloader.
@@ -92,33 +93,22 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  
-
-  services.pipewire = 
-  {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+  profiles.pipewire.enable = true;
 	
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.someboringnerd = 
   {
     isNormalUser = true;
     description = "SomeBoringNerd";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio" ];
     packages = with pkgs; 
     [
       firefox
       kate
     ];
   };
+
+  services.udev.packages = [ pkgs.dolphinEmu ];
 
   programs.steam = {
     enable = true;
@@ -141,6 +131,19 @@
   	DOTNET_ROOT = "${pkgs.dotnet-sdk}";
   };
 
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    nerdfonts
+  ];
+
   environment.systemPackages = with pkgs; 
   [
   	# dev tools
@@ -162,12 +165,15 @@
     virt-manager
     blockbench-electron
     yuzu-mainline
+    dolphin-emu
     onlyoffice-bin
 
     # plugins / other
     mediainfo
-    wine
+    wineWowPackages.stable
+    winetricks
     glaxnimate
+    glfw
 
     #cli
     htop
@@ -177,6 +183,7 @@
     libnotify
 
     #cli dev tools
+    python310Packages.pip
     gccgo13
     pango
     pkgconfig
@@ -192,6 +199,7 @@
     nodejs
     clang_12
     raylib
+    temurin-jre-bin-17
   ];
 
   # This value determines the NixOS release from which the default

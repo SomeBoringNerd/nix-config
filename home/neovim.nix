@@ -11,9 +11,5 @@
     plugins = [
       pkgs.vimPlugins.coc-nvim
     ];
-
-    extraConfig = ''
-      set number
-    '';
   };
 }
