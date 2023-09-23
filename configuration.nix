@@ -57,6 +57,8 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+
+    extraPackages = [ pkgs.mesa.drivers ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -75,7 +77,7 @@
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
   };
 
   # ------- END GPU DRIVER -------
@@ -131,7 +133,7 @@
   	DOTNET_ROOT = "${pkgs.dotnet-sdk}";
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -147,19 +149,17 @@
   environment.systemPackages = with pkgs; 
   [
   	# dev tools
-    unityhub
-    jetbrains.rider
     jetbrains.idea-community
     
     # software
     vlc
+    audacity
     qbittorrent
     prismlauncher
     gimp
     aseprite
     gparted
     obs-studio
-    blender
     lmms
     kdenlive
     virt-manager
@@ -167,6 +167,7 @@
     yuzu-mainline
     dolphin-emu
     onlyoffice-bin
+    anytype
 
     # plugins / other
     mediainfo
@@ -174,6 +175,19 @@
     winetricks
     glaxnimate
     glfw
+    glxinfo
+    openssl
+    xorg.libX11
+    xorg.libXext
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXxf86vm
+    xorg.libX11.dev
+    xorg.libxcb.dev
+    libpulseaudio
+    libGL
+    openal
+    stdenv.cc.cc.lib
 
     #cli
     htop
