@@ -3,8 +3,9 @@
 {
   home.stateVersion = "23.05";
   imports = [
-    ./git.nix
+    ./alacritty.nix
     ./fish.nix
+    ./git.nix
     ./neovim.nix
     ./vscode.nix
   ];

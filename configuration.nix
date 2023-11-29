@@ -39,11 +39,23 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+  
+    displayManager = {
+        sddm.enable = true;
+        defaultSession = "none+awesome";
+    };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    windowManager.awesome = {
+      enable = true;
+      luaModules = with pkgs.luaPackages; [
+        luarocks # is the package manager for Lua modules
+        luadbi-mysql # Database abstraction layer
+      ];
+
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = 
@@ -70,6 +82,8 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
+  services.gvfs.enable = true;
+
   hardware.nvidia = 
   {
 
@@ -77,7 +91,7 @@
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # ------- END GPU DRIVER -------
@@ -112,15 +126,50 @@
 
   services.udev.packages = [ pkgs.dolphinEmu ];
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 8096 ];
+    allowedUDPPortRanges = [
+      { from = 4000; to = 4007; }
+      { from = 8000; to = 8100; }
+    ];
+  };
+
+
+  services.jellyfin.enable = true;
+
+
+  systemd.user.services.root = {
+    description = "Startup script";
+    serviceConfig.PassEnvironment = "DISPLAY";
+    script = ''
+      flameshot
+      qbittorrent
+      sudo systemctl start jellyfin.service
+      # jellyfin need to regain permission to my video folder each time it is reseted
+      set MYGROUP users
+      sudo usermod -a -G $MYGROUP jellyfin 
+      sudo chown $USER:$MYGROUP /home/someboringnerd/ 
+      sudo chmod 750 /home/$USER 
+      sudo setfacl -m g:$MYGROUP:rwx /home/$USER
+
+      sudo systemctl restart jellyfin.service
+    '';
+    wantedBy = [ "multi-user.target" ]; # starts after login
+  };
+
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  services.tailscale.enable = true;
+
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
+	
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.cudaSupport = true;
@@ -168,10 +217,23 @@
     dolphin-emu
     onlyoffice-bin
     anytype
+    minetest
+    obsidian
+    zrythm
+    nitrogen
+    polybar
+    cinnamon.nemo
+    flameshot
+    blender
+    jellyfin-media-player
+    davinci-resolve
+    lxappearance
+  
 
     # plugins / other
     mediainfo
-    wineWowPackages.stable
+    freetype
+    wine
     winetricks
     glaxnimate
     glfw
@@ -195,8 +257,11 @@
     pridefetch
     xclip
     libnotify
+    zip
+    git-lfs
 
     #cli dev tools
+    python3
     python310Packages.pip
     gccgo13
     pango
@@ -213,6 +278,7 @@
     nodejs
     clang_12
     raylib
+    openjdk17
     temurin-jre-bin-17
   ];
 
